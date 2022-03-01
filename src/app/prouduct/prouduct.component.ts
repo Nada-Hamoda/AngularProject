@@ -8,33 +8,53 @@ import { DiscountOffers } from '../shared classes and types/DiscountOffersEnum';
   styleUrls: ['./prouduct.component.scss'],
 })
 export class ProuductComponent implements OnInit {
+  Discount: DiscountOffers;
+  StoreName: string;
+  StoreLogo: string;
+  ProductList: IProduct[];
+
+  CategoryList: ICategory[];
+
+  ClientName: string;
+  IsPurshased: boolean;
+
   constructor() {
-    Discount: 10;
-    StoreName: 'shop';
-    StoreLogo: 'gg';
-    ProductList: {
-    }
-    CategoryList: {
-    }
-    ClientName: 'nada';
-    IsPurshased: true;
+    this.Discount = DiscountOffers['10%'];
+    this.StoreName = 'shop';
+    this.StoreLogo = '../../assets/photo/logo.png';
+    this.ProductList = [
+      {
+        ID: 1,
+        Name: 'p1',
+        Quantity: 2,
+        Price: 40,
+        Img: 'img',
+      },
+      {
+        ID: 2,
+        Name: 'p1',
+        Quantity: 2,
+        Price: 40,
+        Img: 'img',
+      },
+    ];
+    this.CategoryList = [
+      {
+        ID: 1,
+        Name: 'product1',
+      },
+      {
+        ID: 2,
+        Name: 'product2',
+      },
+    ];
+
+    this.ClientName = 'nada';
+    this.IsPurshased = false;
   }
-  Discount: DiscountOffers = 10;
-  StoreName: string = 'shop';
-  StoreLogo: string = 'gg';
-  ProductList: IProduct = {
-    ID: 1,
-    Name: 'p1',
-    Quantity: 2,
-    Price: 40,
-    Img: 'img',
-  };
-  CategoryList: ICategory = {
-    ID: 1,
-    Name: 'product1',
-  };
-  ClientName: string = 'NADA';
-  IsPurshased: boolean = true;
 
   ngOnInit(): void {}
+  show() {
+    this.IsPurshased = !this.IsPurshased;
+  }
 }

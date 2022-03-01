@@ -1,3 +1,46 @@
-<p>prouduct works!</p>
-<h1>{{ StoreName }}</h1>
-<h3>{{ "We offer an explicit discount of  " + Discount }}</h3>
+<h1>{{ StoreName | uppercase }}</h1>
+
+<!-- هيظهر الجمله -->
+<h3 *ngIf="Discount == 'no discount'">
+  {{ "We offer an explicit discount of  " + Discount | percent }}
+</h3>
+<!--مش هيظهر الجمله -->
+<h3 *ngIf="Discount != 'no discount'">
+  {{ "We offer an explicit discount of  " + Discount }}
+</h3>
+<br />
+<img [src]="StoreLogo" />
+<br />
+----------------------------------------------------
+<!--each category has value-->
+<select>
+  <option *ngFor="let category of CategoryList" [value]="category.Name">
+    {{ category.Name }}
+  </option>
+</select>
+<br />
+------------------------------------
+<input type="button" value="Buy" (click)="show()" />
+
+<div *ngIf="IsPurshased; then thenBlock; else elseBlock"></div>
+<ng-template #elseBlock>
+  <table>
+    <tr *ngFor="let product of ProductList">
+      <td>
+        {{ product.Name }}
+      </td>
+      <td>
+        {{ product.Price }}
+      </td>
+    </tr>
+  </table>
+</ng-template>
+<ng-template #thenBlock>
+  <div>Thanks for purchasing from our Store {{ ClientName }}</div>
+</ng-template>
+<br />
+-------------------------------------
+<input type="text" [(ngModel)]="ClientName" />
+{{ ClientName }}
+<br />
+-------------------------------
